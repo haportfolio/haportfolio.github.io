@@ -97,7 +97,7 @@
         
                             <h5 style="margin-top: 0; font-weight:400"><a href="https://fenix.tecnico.ulisboa.pt/disciplinas/PP5/2017-2018/1-semestre/ver-post/esta-semana-nao-havera-aula-de-portfolio-pessoal-7fc">Esta semana não haverá aula de Portfolio Pessoal</a></h5>
                     <p class="small" style="font-size:11px; color:#888;margin-top:5px; margin-bottom:18px;"> 
-                    <span>13 Novembro 2017, 23:13 </span>
+                    <span class"_date_"> 13 Novembro 2017, 23:13 </span>
                     <span style="padding-left:5px; padding-right:5px; color:#ddd;">•</span>
                     <span>Rui António Dos Santos Cruz</span>
                 </p>
@@ -251,6 +251,25 @@ nomeadamente <b><font color="#0077aa">REGULAMENTO</font></b>, <b><font color="#0
     event.preventDefault();
   });
   setLang=function(l){$.post('/api/bennu-core/profile/locale/'+l.replace('_', '-')).always(function(){location.reload();})}
+  
+    
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    var d = new Date();
+    d.setDate(d.getDate() - (d.getDay() + 6) % 7); // this week's monday
+    
+    var options = { year: 'numeric', month: 'long', day: '2-digit', hour:'numeric',minute:'numeric' };
+    var date_str = d.toLocaleDateString('pt-PT', options);
+    date_str = date_str.replace(/de /g, "")
+    console.log(date_str);
+
+    var split = date_str.split(" ");
+    split[1] = capitalizeFirstLetter(split[1])
+    date_str = split.join(" ");
+    
+    var elem = document.querySelector("span");
+    elem.textContent = date_str;
 })();
 </script>
 
